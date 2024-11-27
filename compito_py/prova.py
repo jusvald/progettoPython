@@ -9,15 +9,22 @@ def visualizza():
         print(f"{i + 1}. {lista[i]}")
 
 def rimuovi():
-    scelta = str(input("scelgli cosa rimuovere"))
-    lista.pop(scelta)
+    lista.pop()
+
+def conta():
+     x = lista.count(1)
+     print(x)
+
 
 def svuota_lista():
     lista.clear()
 
 
+
+
+
 while True:
-    print( "premi 0 per uscire,\n premi 1 per aggiungerre un elemento,\n premi 2 pervisualizzare la lista,\n premi 3 per eliminare un elemento,\n premi 4 per contaregli elementi della lista,\n premi 5 per eliminare un elemento")
+    print( "premi 0 per uscire,\n premi 1 per aggiungerre un elemento,\n premi 2 pervisualizzare la lista,\n premi 3 per eliminare un elemento,\n premi 4 per contare gli elementi della lista,\n premi 5 per eliminare un elemento")
     x = int(input(""))
     if x == 0:
             
