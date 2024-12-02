@@ -1,4 +1,4 @@
-lista = []
+lista_spesa = []
 
 def aggiungi():
     valore = str(input("Aggiungi un elemento: "))
