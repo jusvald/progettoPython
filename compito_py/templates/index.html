@@ -1,29 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista della Spesa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista della Spesa</title>
 </head>
-<body>
-    <h1>La tua Lista della Spesa</h1>
-    {% if lista %}
-        <ul>
-            {% for elemento in lista %}
-            <li>
-                {{ elemento }}
-                <form action="/rimuovi/{{ loop.index0 }}" method="post" style="display:inline;">
-                    <button type="submit">Rimuovi</button>
+
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="mb-4 text-center text-primary">La tua Lista della Spesa</h1>
+
+                {% if lista %}
+                <ul class="list-group mb-4">
+                    {% for elemento in lista %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="fw-bold">{{ elemento.elemento }}</span>
+                        <form action="/rimuovi/{{ elemento.id }}" method="post" class="d-inline">
+                            <button type="submit">Rimuovi</button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-center text-muted">La lista è vuota.</p>
+                {% endif %}
+
+                <form action="/aggiungi" method="post" class="mb-3">
+                    <div class="input-group">
+                        <input type="text" name="elemento" class="form-control" placeholder="Aggiungi un elemento" required>
+                        <button type="submit">Aggiungi</button>
+                    </div>
                 </form>
-            </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>La lista è vuota.</p>
-    {% endif %}
-    <form action="/aggiungi" method="post">
-        <input type="text" name="elemento" placeholder="Aggiungi un elemento" required>
-        <button type="submit">Aggiungi</button>
-    </form>
+
+                <form action="/svuota_lista" method="post" class="text-center">
+                    <button type="submit">Svuota Lista</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
