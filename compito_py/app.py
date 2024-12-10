@@ -5,7 +5,7 @@ from models import ListaSpesa, db
 app = Flask(__name__)
 lista =[]
 
-#configurazione db
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///lista.db' #questa riga definisce url del database 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #questa riga tiene traccia delle modifiche apportate agli oggetti nel database
@@ -29,11 +29,10 @@ def home():
 def aggiungi():
    elemento = request.form['elemento']
    if elemento:
-        #lista.append(elemento)
 
         nuovo_elemento = ListaSpesa(elemento=elemento) #crea un nuovo oggetto lista
 
-        db.session.add(nuovo_elemento) # Aggiunge il nuovo elemento alla sessione del database
+        db.session.add(nuovo_elemento) # Aggiunge il nuovo elemento al database
 
         db.session.commit()#salva l'elemento nel database
 
@@ -42,9 +41,9 @@ def aggiungi():
 @app.route('/rimuovi/<int:indice>', methods=['POST'])
 def rimuovi(indice):
 
-    elemento = ListaSpesa.query.get_or_404(indice) #Cerca l'elemento per ID da errore 404 se non trovato
+    elemento = ListaSpesa.query.get_or_404(indice) #Cerca l'elemento per e da errore 404 se non trovato
 
-    db.session.delete(elemento) #Eeimina l'elemento  del database
+    db.session.delete(elemento) #Elimina l'elemento  dal database
 
     db.session.commit() #salva l'elemento nel database
 
@@ -54,8 +53,8 @@ def rimuovi(indice):
 def svuota_lista():
 
 
-    ListaSpesa.query.delete() #Elimina tutti gli elementi della tabella lista
-    db.session.commit() #salva l'elemento nel database
+    ListaSpesa.query.delete() #Elimina tutti gli elementi dal database
+    db.session.commit() #salva le modifiche del database
 
 
 
